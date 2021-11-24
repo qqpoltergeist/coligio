@@ -1,24 +1,28 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, {useContext, useEffect} from 'react';
+import LoginForm from "./components/LoginForm";
+import {Context} from "./index";
+import {observer} from "mobx-react-lite";
 
-function App() {
-  const [data, setData] = React.useState(null);
+const App = () => {
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+    const {store} = useContext(Context)
+    useEffect(() =>{
+        if (localStorage.getItem('token')) {
+            store.checkAuth()
+        }
+    }, [])
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
-    </div>
-  );
-}
+    // if (store.isLoading == false){
+    //     return (<div>
+    //             Загрузка...
+    //         </div>
+    //     )
+    // }
+    return (
+        <div>
+          <LoginForm/>
+        </div>
+    );
+};
 
-export default App;
+export default observer(App);
