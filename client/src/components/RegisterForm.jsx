@@ -4,19 +4,15 @@ import CustomInput from "../UI/CustomInput";
 import Button from "../UI/Button";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import $api from "../http";
 import {Link} from "react-router-dom";
 const LoginForm = () => {
 
     const [email,setEmail] = useState('')
     const [password, setPass] = useState('')
+    const [username, setUser] = useState('')
     const {store} = useContext(Context);
-
-  async function f() {
-        if ($api.response.status === 401){
-            console.log("131323")
-        }
-
+    function registration() {
+        store.registration(username,email,password)
 
     }
 
@@ -28,8 +24,22 @@ const LoginForm = () => {
                     <CustomInput
                         value={email}
                         handleChange={e => setEmail(e.target.value)}
+                        formControlProps={{
+                            fullWidth: true
+                        }}
+                        id="email"
                         labelText="Email"
                         type="email"
+                    />
+                    <CustomInput
+                        value={username}
+                        handleChange={e => setUser(e.target.value)}
+                        labelText="Username"
+                        id="username"
+                        formControlProps={{
+                            fullWidth: true
+                        }}
+                        type="text"
                     />
                     <CustomInput
                         value={password}
@@ -42,13 +52,17 @@ const LoginForm = () => {
 
                         type="password"
                     />
-                    <Link to='/'>
+
+                    <Link to="/">
                     <Button
-                        onClick={()=> store.login(email,password)}
+                        onClick={()=> {
+                                registration()
+
+                        } }
                         type="button"
                         color="primary"
                         className="form__custom-button">
-                        Log in
+                        Register
                     </Button>
                     </Link>
                 </form>
