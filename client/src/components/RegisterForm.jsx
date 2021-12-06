@@ -1,20 +1,16 @@
-import React, { Component, useState, useContext } from "react";
+import React, {  useState, useContext } from "react";
 import "../styles/LoginForm.css";
 import CustomInput from "../UI/CustomInput";
 import Button from "../UI/Button";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import {Link} from "react-router-dom";
-const LoginForm = () => {
+const RegisterForm = () => {
 
     const [email,setEmail] = useState('')
     const [password, setPass] = useState('')
-    const [username, setUser] = useState('')
+    const [nickname, setUser] = useState('')
     const {store} = useContext(Context);
-    function registration() {
-        store.registration(username,email,password)
-
-    }
 
 
     return (
@@ -32,7 +28,7 @@ const LoginForm = () => {
                         type="email"
                     />
                     <CustomInput
-                        value={username}
+                        value={nickname}
                         handleChange={e => setUser(e.target.value)}
                         labelText="Username"
                         id="username"
@@ -53,10 +49,10 @@ const LoginForm = () => {
                         type="password"
                     />
 
-                    <Link to="/">
+                    <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit'}}>
                     <Button
                         onClick={()=> {
-                                registration()
+                            store.registration(nickname,email,password)
 
                         } }
                         type="button"
@@ -71,4 +67,4 @@ const LoginForm = () => {
     );
 };
 
-export default observer(LoginForm);
+export default observer(RegisterForm);

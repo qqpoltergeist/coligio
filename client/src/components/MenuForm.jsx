@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext } from "react";
+import React, { useContext } from "react";
 import "../styles/LoginForm.css";
 
 import Button from "../UI/Button";
@@ -7,17 +7,17 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 
 
-const LoginForm = () => {
+const MenuForm = () => {
 
 
-    const [password, setPass] = useState('')
+
     const {store} = useContext(Context);
 
     return (
         <div>
             <div className="LoginForm">
                 <form className="form">
-                    <Link to='/login'>
+                    <Link to='/login' style={{ color: 'inherit', textDecoration: 'inherit'}}>
                     <Button
                         type="button"
                         color="primary"
@@ -25,7 +25,7 @@ const LoginForm = () => {
                         Логин
                     </Button>
                     </Link>
-                    <Link to='/register'>
+                    <Link to='/register' style={{ color: 'inherit', textDecoration: 'inherit'}}>
                     <Button
                         type="button"
                         color="primary"
@@ -33,26 +33,29 @@ const LoginForm = () => {
                         Регистрация
                     </Button>
                     </Link>
+                    <Link to="/lessons"  style={{ color: 'inherit', textDecoration: 'inherit'}}>
                     <Button
                         type="button"
                         color="primary"
                         className="form__custom-button">
                         Занятия
                     </Button>
-
+                    </Link>
                     <Button
+
                         type="button"
                         color="primary"
                         className="form__custom-button">
                         Запоминание
                     </Button>
 
-                    <Button
+                    <Button style={{display: store.isAuth ? '': 'none'}}
                         onClick={()=> {store.logout()} }
                         type="button"
                         color="primary"
                         className="form__custom-button">
                         Выйти из аккаунта
+
                     </Button>
 
                 </form>
@@ -61,4 +64,4 @@ const LoginForm = () => {
     );
 };
 
-export default observer(LoginForm);
+export default observer(MenuForm);

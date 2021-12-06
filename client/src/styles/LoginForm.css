@@ -4,7 +4,15 @@
 }
 
 body {
-    background: #637d63;
+    background-color:#3c4f5d;
+    background-repeat: repeat-x;
+    background-image:url('../images/nightcity.png');
+}
+
+#root {
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }
 
 .LoginForm {
@@ -24,4 +32,14 @@ body {
 
 .form .form__custom-button {
     margin-top: 50px;
+}
+
+.post {
+    display: flex;
+    padding: 15px;
+    border: 2px solid teal;
+    margin-top: 15px ;
+    justify-content: space-between;
+    align-items: center;
+
 }

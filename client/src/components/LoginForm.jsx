@@ -1,24 +1,25 @@
-import React, { Component, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "../styles/LoginForm.css";
 import CustomInput from "../UI/CustomInput";
 import Button from "../UI/Button";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import $api from "../http";
-import {Link} from "react-router-dom";
+
+import {Link, useNavigate} from "react-router-dom";
 const LoginForm = () => {
 
     const [email,setEmail] = useState('')
     const [password, setPass] = useState('')
     const {store} = useContext(Context);
+    const history = useNavigate();
 
-  async function f() {
-        if ($api.response.status === 401){
-            console.log("131323")
+    function handleClick() {
+        if(store.isAuth === true) {
+            history('/');
         }
-
-
     }
+
+
 
 
     return (
@@ -42,15 +43,19 @@ const LoginForm = () => {
 
                         type="password"
                     />
-                    <Link to='/'>
+
                     <Button
-                        onClick={()=> store.login(email,password)}
+                        onClick={()=> {
+                             store.login(email,password);
+                             handleClick()
+
+                        }}
                         type="button"
                         color="primary"
                         className="form__custom-button">
                         Log in
                     </Button>
-                    </Link>
+
                 </form>
             </div>
         </div>

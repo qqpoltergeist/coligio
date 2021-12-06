@@ -2,11 +2,16 @@ import {makeAutoObservable} from "mobx";
 import AuthService from "../services/AuthService";
 import axios from 'axios';
 import {API_URL} from "../http";
+import {useNavigate} from "react-router-dom";
 
 
 
 export default class Store {
-    user = {} ;
+    user = {
+        nickname: "",
+        id: "",
+
+    } ;
     isAuth = false;
     isLoading = false;
     constructor() {
@@ -26,6 +31,7 @@ export default class Store {
         this.user = user;
     }
 
+
     async login(email, password) {
         try {
             const response = await AuthService.login(email, password);
@@ -38,9 +44,9 @@ export default class Store {
         }
     }
 
-    async registration(username,email, password) {
+    async registration(nickname,email, password) {
         try {
-            const response = await AuthService.registration(username,email, password);
+            const response = await AuthService.registration(nickname,email, password);
             console.log(response)
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
