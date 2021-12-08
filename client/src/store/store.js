@@ -79,9 +79,6 @@ export default class Store {
         this.user = user;
     }
 
-    setPass(password){
-        this.password = password;
-    }
 
     async login(email, password) {
         try {
@@ -135,10 +132,8 @@ export default class Store {
     }
     async editPass(id, oldPassword, newPassword){
         try {
-            const response = await AuthService.edit(id, oldPassword, newPassword);
+            const response = await AuthService.editPass(id, oldPassword, newPassword);
             console.log(response)
-            this.setAuth(true);
-            this.setUser(response.data);
         } catch (e) {
             return e;
         }

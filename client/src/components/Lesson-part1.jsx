@@ -50,7 +50,7 @@ const LessonPart1 = (props) => {
                 <div>
                     <div className="LoginForm">
                         <form className="form">
-                            <div >{props.info.body}</div>
+                            <div >{props.info.short}</div>
                             <Button
                                 onClick={()=> {
                                     handleChange()

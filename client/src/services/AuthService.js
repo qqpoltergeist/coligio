@@ -17,7 +17,7 @@ export default class AuthService {
 
     }
     static async editPass(id, oldPassword, newPassword){
-        return $api.post('/edit/password ', {id, oldPassword, newPassword})
+        return $api.post('/password ', {id, oldPassword, newPassword})
     }
 
     static async logout(){

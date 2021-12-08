@@ -9,17 +9,23 @@ const ProfileForm = () => {
     const history = useNavigate()
     const [nickname, setNick] = useState('')
     const [nickname1, setNick1] = useState('')
-    const [password, setPass] = useState('')
+    const [npassword, setNPass] = useState('')
+    const [opassword, setOPass] = useState('')
     let nick = false;
 
     function handleClick(){
         history('/')
     }
     function handlePass() {
-        store.setPass(password)
-        store.editPass(store.user.id,password,store.user.level)
-        document.getElementById('password').value = ''
+
+
+        store.editPass(store.user.id,npassword,opassword)
+        document.getElementById('opassword').value = ''
+        document.getElementById('npassword').value = ''
     }
+
+
+
     function handleNick() {
         localStorage.setItem('nickname', nickname)
         store.edit(store.user.id,nickname,store.user.level)
@@ -51,10 +57,17 @@ const ProfileForm = () => {
                         >Изменить</Button>
                         <CustomInput
                             type="password"
-                            value={password}
-                            handleChange={e => setPass(e.target.value)}
-                            labelText="Пароль"
-                            id="password"
+                            value={npassword}
+                            handleChange={e => setNPass(e.target.value)}
+                            labelText="Старый пароль"
+                            id="opassword"
+                        />
+                        <CustomInput
+                            type="password"
+                            value={opassword}
+                            handleChange={e => setOPass(e.target.value)}
+                            labelText="Новый пароль"
+                            id="npassword"
                         />
                         <Button
                             onClick={()=>{handlePass()}}

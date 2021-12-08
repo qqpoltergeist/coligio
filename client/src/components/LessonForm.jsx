@@ -11,9 +11,9 @@ import {store} from "../index";
 const LessonForm = () => {
     const [auth, setAuth] = useState(store.isAuth)
     const [posts, setPosts] = useState([
-        {id: 1, title: 'Урок 1', body: ' Прилагательные'},
-        {id: 2, title: 'Урок 2', body: ' Существительные'},
-        {id: 3, title: 'Урок 3', body: ' Глаголы'},
+        {id: 1, title: 'Урок 1', body: ' Местоимения - часть 1'},
+        {id: 2, title: 'Урок 2', body: ' Местоимения - часть 2'},
+        {id: 3, title: 'Урок 3', body: ' Глагол to be'},
     ])
 
 

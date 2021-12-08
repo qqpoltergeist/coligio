@@ -13,7 +13,9 @@ const AddWordsForm = () => {
         const history = useNavigate();
 
         function HandleClick() {
-
+            store.listAllWords();
+            store.getPossibleWords(localStorage.getItem('userId'))
+            store.listTodayWords(localStorage.getItem('userId'))
             history('/words')
         }
 

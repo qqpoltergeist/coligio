@@ -26,33 +26,33 @@ const App = ({history}) => {
     const [questionsTest,setTest] = useState([
         [
 
-        {questionText : "I ... sure – Я уверен.", answerOptions:["am","is","are"]},
-        {questionText : "You ... sure — Ты уверен.", answerOptions:["am","is","are"]},
-        {questionText : "He  ... sure — Он уверен", answerOptions:["am","is","are"]}],
+        {questionText : "...  — я", answerOptions:["i","you","he"]},
+        {questionText : "...— ты", answerOptions:["i","you","he"]},
+        {questionText : "... - он", answerOptions:["i","you","he"]}],
         [
-            {questionText : " 1", answerOptions:["ex-2-1","ex-1-2","ex-1-3","ex-1-4"]},
-            {questionText : " 2", answerOptions:["ex-1-1","ex-2-2","ex-1-3","ex-1-4"] },
-            {questionText : " 3", answerOptions:["ex-1-1","ex-1-2","ex-2-3","ex-1-4"]}],
+            {questionText : "... - мы", answerOptions:["we","you","they"]},
+            {questionText : "... - вы", answerOptions:["we","you","they"] },
+            {questionText : ".... - они", answerOptions:["we","you","they"]}],
         [
-            {questionText : " 1", answerOptions:[1,2,3,4]},
-            {questionText : " 2", answerOptions:[1,2,3,4]},
-            {questionText : " 3", answerOptions:[1,2,3,4]}]
+            {questionText : "I ... sure – Я уверен.", answerOptions:["am","is","are"]},
+            {questionText : "You ... sure — Ты уверен.", answerOptions:["am","is","are"]},
+            {questionText : "He  ... sure — Он уверен", answerOptions:["am","is","are"]}]
     ])
 
     const [questionsExam,setExam] = useState([
         [
 
-            {questionText : "I ... sure – Я уверен.",  trueAnswer:'1'},
-            {questionText : "You ... sure — Ты уверен.", trueAnswer:'2'},
-            {questionText : "He  ... sure — Он уверен", trueAnswer:'3'}],
+            {questionText : "...  — я"},
+            {questionText : "...— ты"},
+            {questionText : "... - он"}],
         [
-            {questionText : " 1",  trueAnswer:'1'},
-                {questionText : " 2", trueAnswer:'2'},
-                {questionText : " 3", trueAnswer:'3'}  ],
+            {questionText : "... - мы"},
+            {questionText : "... - вы"},
+            {questionText : ".... - они"}],
         [
-            {questionText : " 1",  trueAnswer:'1'},
-            {questionText : " 2", trueAnswer:'2'},
-            {questionText : " 3", trueAnswer:'3'}]
+            {questionText : "I ... sure – Я уверен."},
+            {questionText : "You ... sure — Ты уверен."},
+            {questionText : "He  ... sure — Он уверен"}]
     ])
 
 
@@ -76,11 +76,12 @@ const App = ({history}) => {
                     <Route exact path='words/learn' element={<LearnWordsForm/>}/>
 
 
-                    <Route path='lessons/lesson1' element={<LessonPart1 info={{id: 1, title: 'Урок 1', body: 'Прилагательное — это часть речи, которая обозначает признак, в нашем случае относящийся к лицу, выраженному местоимением. В отличие от глагола, прилагательному не нужно менять свою форму, подстраиваясь под лицо и число местоимения. Прилагательное — самая простая часть речи, поэтому мы начнем строить предложения именно с ним.\n' +
+                    <Route path='lessons/lesson1' element={<LessonPart1 info={{id: 1, title: 'Урок 1', short: 'В данном уроке мы будем изучать местоимения в единственном числе', body: 'Первые слова, которые нужны для разговорной речи — это личные местоимения, то есть слова, называющие лицо. В русском языке это я, ты, он, она и другие. Английские личные местоимения, как и русские, могут относиться к трем лицам, быть в единственном и множественном числе. Сегодня мы изучим местоимения в единственном числе'}}/>}/>
+
+                    <Route path='lessons/lesson2' element={<LessonPart1 info={{id: 2, title: 'Урок 2', short: 'В данном уроке мы будем изучать местоимения во множественном числе', body: 'Первые слова, которые нужны для разговорной речи — это личные местоимения, то есть слова, называющие лицо. В русском языке это я, ты, он, она и другие. Английские личные местоимения, как и русские, могут относиться к трем лицам, быть в единственном и множественном числе. Сегодня мы изучим местоимения во множественном числе'}}/>}/>
+                    <Route path='lessons/lesson3' element={<LessonPart1 info={{id: 3, title: 'Урок 3', short: 'В данном уроке мы будем изучать глагол to be', body: 'Глагол to be – это самый нужный и употребительный глагол в английском языке. Он значит «быть», «являться». В речи он принимает разные формы в зависимости от лица, числа и времени.\n' +
                             '\n' +
-                            'Посмотрим, как фраза из трех слов будет выглядеть в зависимости от лица и числа. Мы пока возьмем примеры только в настоящем времени, к прошедшему и будущему вернемся позже.'}}/>}/>
-                    <Route path='lessons/lesson2' element={<LessonPart1 info={{id: 2, title: 'Урок 2', body: '11'}}/>}/>
-                    <Route path='lessons/lesson3' element={<LessonPart1 info={{id: 3, title: 'Урок 3', body: '11'}}/>}/>
+                            'К примеру, в первом лице единственного числа он превращается в am. Возьмем пример с прилагательным sure — уверенный.'}}/>}/>
 
                     <Route path='lessons/lesson1/1' element={<LessonPart2 id="1" questions={questionsTest[0]} length= {questionsTest[0].length}/>}/>
                     <Route path='lessons/lesson2/1' element={<LessonPart2 id="2" questions={questionsTest[1]} length= {questionsTest[1].length}/>}/>
