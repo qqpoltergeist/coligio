@@ -20,101 +20,130 @@ const LearnWordsForm = () => {
         history('/words')
     }
 
-    let similarIndex = store.wordssList.findIndex(item => item._id === store.todayWordss[index].idWord)
+    try {
+        let similarIndex = store.wordssList.findIndex(item => item._id === store.todayWordss[index].idWord)
 
 
-
-    function handleShow (){
-        setNext(true)
-        setAccess(store.todayWordss[index].accessDays)
-        setFail(store.todayWordss[index].failDays)
-    }
-    function handleDelete(){
-        store.deleteWords(store.user.id,store.todayWordss[index].idWord)
-        setNext(false)
-        const nextIndex = index +1
-        if(nextIndex < store.todayWordss.length){
-        setIndex(nextIndex)} else {
-            setEmpty(false)
-        }
-    }
-
-    function handleAccess(){
-        setNext(false)
-        store.addWords(store.user.id,store.todayWordss[index].idWord,access)
-        const nextIndex = index +1
-        if(nextIndex < store.todayWordss.length){
-            setIndex(nextIndex)} else {
-            setEmpty(false)
+        function handleShow() {
+            setNext(true)
+            setAccess(store.todayWordss[index].accessDays)
+            setFail(store.todayWordss[index].failDays)
         }
 
-    }
-
-    function handleFail(){
-        setNext(false)
-        store.addWords(store.user.id,store.todayWordss[index].idWord,fail)
-        const nextIndex = index +1
-        if(nextIndex < store.todayWordss.length){
-            setIndex(nextIndex)} else {
-            setEmpty(false)
+        function handleDelete() {
+            store.deleteWords(store.user.id, store.todayWordss[index].idWord)
+            setNext(false)
+            const nextIndex = index + 1
+            if (nextIndex < store.todayWordss.length) {
+                setIndex(nextIndex)
+            } else {
+                setEmpty(false)
+            }
         }
 
-    }
+        function handleAccess() {
+            setNext(false)
+            store.addWords(store.user.id, store.todayWordss[index].idWord, access)
+            const nextIndex = index + 1
+            if (nextIndex < store.todayWordss.length) {
+                setIndex(nextIndex)
+            } else {
+                setEmpty(false)
+            }
+
+        }
+
+        function handleFail() {
+            setNext(false)
+            store.addWords(store.user.id, store.todayWordss[index].idWord, fail)
+            const nextIndex = index + 1
+            if (nextIndex < store.todayWordss.length) {
+                setIndex(nextIndex)
+            } else {
+                setEmpty(false)
+            }
+
+        }
 
 
+        if (empty) {
+            return (
+                <div>
+                    <div className="LoginForm">
 
-    if(empty){
-    return (
-        <div>
-                <div className="LoginForm">
-
-                    <form className="form">
-                        <h1>{store.wordssList[similarIndex].englishWord}</h1>
-                        <h2 style={{display: next ? '' : 'none'}}>{store.wordssList[similarIndex].russianWord}</h2>
-                        <Button
-                            style={{display: next ? 'none' : ''}}
-                            type="button"
-                            color="github"
-                            className="form__custom-button"
-                            onClick={() => {handleShow()}}
-                        >
-                            Показать слово
-                        </Button>
-                        <div>
+                        <form className="form">
+                            <h1>{store.wordssList[similarIndex].englishWord}</h1>
+                            <h2 style={{display: next ? '' : 'none'}}>{store.wordssList[similarIndex].russianWord}</h2>
                             <Button
-                                style={{display: next ? '' : 'none'}}
+                                style={{display: next ? 'none' : ''}}
                                 type="button"
-                                color="google"
+                                color="github"
                                 className="form__custom-button"
-                                onClick={() => {handleDelete()}}
+                                onClick={() => {
+                                    handleShow()
+                                }}
                             >
-                                Удалить
+                                Показать слово
                             </Button>
-                            <Button
-                                style={{display: next ? '' : 'none'}}
+                            <div>
+                                <Button
+                                    style={{display: next ? '' : 'none'}}
+                                    type="button"
+                                    color="google"
+                                    className="form__custom-button"
+                                    onClick={() => {
+                                        handleDelete()
+                                    }}
+                                >
+                                    Удалить
+                                </Button>
+                                <Button
+                                    style={{display: next ? '' : 'none'}}
 
-                                type="button"
-                                color="primary"
-                                className="form__custom-button"
-                                onClick={() => {handleAccess()}}
-                            >
-                                {access}
-                            </Button>
-                            <Button
-                                style={{display: next ? '' : 'none'}}
-                                type="button"
-                                color="primary"
-                                className="form__custom-button"
-                                onClick={() => {handleFail()}}
-                            >
-                                {fail}
-                            </Button>
+                                    type="button"
+                                    color="primary"
+                                    className="form__custom-button"
+                                    onClick={() => {
+                                        handleAccess()
+                                    }}
+                                >
+                                    {access}
+                                </Button>
+                                <Button
+                                    style={{display: next ? '' : 'none'}}
+                                    type="button"
+                                    color="primary"
+                                    className="form__custom-button"
+                                    onClick={() => {
+                                        handleFail()
+                                    }}
+                                >
+                                    {fail}
+                                </Button>
 
-                        </div>
-                    </form>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-        </div>
-    );} else {
+            );
+        } else {
+            return (<div className="LoginForm">
+
+                <form className="form">
+                    <span>Новых слов нет!</span>
+                    <Button
+                        type="button"
+                        color="primary"
+                        className="form__custom-button"
+                        onClick={() => {
+                            HandleClick()
+                        }}
+
+                    >Назад</Button>
+                </form>
+            </div>)
+        }
+    }catch (e) {
         return (<div className="LoginForm">
 
             <form className="form">
@@ -130,8 +159,8 @@ const LearnWordsForm = () => {
                 >Назад</Button>
             </form>
         </div>)
-    }
 
+    }
 };
 
 export default observer(LearnWordsForm);

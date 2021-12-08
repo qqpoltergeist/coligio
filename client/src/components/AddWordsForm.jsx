@@ -18,74 +18,93 @@ const AddWordsForm = () => {
             store.listTodayWords(localStorage.getItem('userId'))
             history('/words')
         }
+        try {
+            function HandleAdd() {
+                store.addWords(store.user.id, store.possibleWords[currentWord]._id, 0)
+                let nextWord = currentWord + 1
+                if (nextWord < store.possibleWords.length) {
+                    setCurrentWord(nextWord)
+                } else {
+                    setEmpty(false);
+                }
 
-        function HandleAdd() {
-            store.addWords(store.user.id, store.possibleWords[currentWord]._id, 0)
-            let nextWord = currentWord + 1
-            if (nextWord < store.possibleWords.length) {
-                setCurrentWord(nextWord)
-            } else {
-                setEmpty(false);
             }
 
-        }
+            function HandleSkip() {
+                let nextWord = currentWord + 1
 
-        function HandleSkip() {
-            let nextWord = currentWord + 1
-
-            if (nextWord < store.possibleWords.length) {
-                setCurrentWord(nextWord)
-            } else {
-                setEmpty(false);
+                if (nextWord < store.possibleWords.length) {
+                    setCurrentWord(nextWord)
+                } else {
+                    setEmpty(false);
+                }
             }
-        }
 
-        if (empty) {
-            return (
-                <div>
-                    <div className="LoginForm">
+            if (empty) {
+                return (
+                    <div>
+                        <div className="LoginForm">
 
-                        <form className="form">
+                            <form className="form">
 
-                            <h1>{store.possibleWords[currentWord].englishWord}</h1>
-                            <h2>{store.possibleWords[currentWord].russianWord}</h2>
-                            <div>
+                                <h1>{store.possibleWords[currentWord].englishWord}</h1>
+                                <h2>{store.possibleWords[currentWord].russianWord}</h2>
+                                <div>
+                                    <Button
+                                        type="button"
+                                        color="warning"
+                                        className="form__custom-button"
+                                        onClick={() => {
+                                            HandleAdd()
+                                        }}
+                                    >Добавить</Button>
+                                    <Button
+                                        type="button"
+                                        color="warning"
+                                        className="form__custom-button"
+                                        onClick={() => {
+                                            HandleSkip()
+                                        }}
+
+                                    >Пропустить</Button>
+
+                                </div>
+
                                 <Button
                                     type="button"
-                                    color="warning"
+                                    color="primary"
                                     className="form__custom-button"
                                     onClick={() => {
-                                        HandleAdd()
-                                    }}
-                                >Добавить</Button>
-                                <Button
-                                    type="button"
-                                    color="warning"
-                                    className="form__custom-button"
-                                    onClick={() => {
-                                        HandleSkip()
+                                        HandleClick()
                                     }}
 
-                                >Пропустить</Button>
+                                >Назад</Button>
 
-                            </div>
-
-                            <Button
-                                type="button"
-                                color="primary"
-                                className="form__custom-button"
-                                onClick={() => {
-                                    HandleClick()
-                                }}
-
-                            >Назад</Button>
-
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            );
-        } else {
-            return (<div className="LoginForm">
+                );
+            } else {
+                return (<div className="LoginForm">
+
+                    <form className="form">
+                        <span>Новых слов нет!</span>
+                        <Button
+                            type="button"
+                            color="primary"
+                            className="form__custom-button"
+                            onClick={() => {
+                                HandleClick()
+                            }}
+
+                        >Назад</Button>
+                    </form>
+                </div>)
+            }
+
+
+        } catch (e) {
+            return(<div className="LoginForm">
 
                 <form className="form">
                     <span>Новых слов нет!</span>
@@ -101,8 +120,6 @@ const AddWordsForm = () => {
                 </form>
             </div>)
         }
-
-
 
 
 };
