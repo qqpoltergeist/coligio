@@ -12,6 +12,14 @@ export default class AuthService {
         return $api.post('/reg', {nickname,email,password})
 
     }
+    static async edit(id,nickname,level){
+        return $api.post('/edit', {id,nickname,level})
+
+    }
+    static async editPass(id, oldPassword, newPassword){
+        return $api.post('/edit/password ', {id, oldPassword, newPassword})
+    }
+
     static async logout(){
         return $api.post('/logout')
 

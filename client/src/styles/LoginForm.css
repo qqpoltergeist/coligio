@@ -43,3 +43,11 @@ body {
     align-items: center;
 
 }
+.editStyle{
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+
+}

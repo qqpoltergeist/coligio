@@ -6,19 +6,17 @@ import LessonList from "./LessonList";
 import Button from "../UI/Button";
 import {Route, Router, Routes} from "react-router";
 import LessonPart1 from "./Lesson-part1";
+import {store} from "../index";
 
 const LessonForm = () => {
-
+    const [auth, setAuth] = useState(store.isAuth)
     const [posts, setPosts] = useState([
-        {id: 1, title: 'Урок 1', body: 'zz'},
-        {id: 2, title: 'Урок 2', body: 'ff'},
-        {id: 3, title: 'Урок 3', body: 'ee'},
+        {id: 1, title: 'Урок 1', body: ' Прилагательные'},
+        {id: 2, title: 'Урок 2', body: ' Существительные'},
+        {id: 3, title: 'Урок 3', body: ' Глаголы'},
     ])
-    const [part1, setPart1] = useState([
 
-        {id: 1, title: 'Урок 1', body: 'zz'}
 
-    ])
 
     const history = useNavigate();
     function handleClick() {
@@ -26,11 +24,17 @@ const LessonForm = () => {
             history('/');
 
     }
+    let message;
+
+
+    message = 'Без регистрации вам доступен только первый уровень'
+
 
     return (
         <div>
                 <div className="LoginForm">
                     <form className="form">
+                        <span>{!auth ? message: ''}</span>
                     <LessonList posts={posts}  />
 
                         <Button

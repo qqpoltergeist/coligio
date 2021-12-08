@@ -5,6 +5,7 @@ import LessonItem from "./LessonItem";
 import {Route, Router, Routes} from "react-router";
 import MenuForm from "./MenuForm";
 import LessonPart1 from "./Lesson-part1";
+import {store} from "../index";
 
 const LessonList = ({title, posts, part1}) => {
 

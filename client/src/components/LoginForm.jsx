@@ -9,14 +9,15 @@ import {Link, useNavigate} from "react-router-dom";
 const LoginForm = () => {
 
     const [email,setEmail] = useState('')
+    const [login, setLogin] = useState(false)
     const [password, setPass] = useState('')
     const {store} = useContext(Context);
     const history = useNavigate();
 
+
     function handleClick() {
-        if(store.isAuth === true) {
+
             history('/');
-        }
     }
 
 
@@ -47,7 +48,8 @@ const LoginForm = () => {
                     <Button
                         onClick={()=> {
                              store.login(email,password);
-                             handleClick()
+                             setLogin(store.isAuth);
+                             handleClick();
 
                         }}
                         type="button"
@@ -60,6 +62,7 @@ const LoginForm = () => {
             </div>
         </div>
     );
+
 };
 
 export default observer(LoginForm);

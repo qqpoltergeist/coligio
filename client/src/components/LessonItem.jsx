@@ -1,44 +1,38 @@
-import React from 'react';
-import MyButton from "../UI/button/MyButton";
-import Link from "@material-ui/core/Link";
-import { useNavigate, Router } from "react-router-dom";
-import {store} from "../index";
-import LessonPart1 from "./Lesson-part1";
+import checkmark from '../images/checkmark.png'
+import React, {useContext} from 'react';
+import { useNavigate} from "react-router-dom";
+import {Context, store} from "../index";
+import {observer} from "mobx-react-lite";
+
+
+
 const LessonItem = (props) => {
 
-
+    const {store} = useContext(Context)
     const history = useNavigate();
-    let check;
-    let message;
+    let check, checkComplete;
     if (store.isAuth === false && props.post.id === 1){
         check = true;
-        message = 'Без регистрации вам доступен только первый уровень'
-    }
-    else if (store.isAuth === false && props.post.id > 1){
-        check = false;
-    }
-    else {check = true;}
 
+    }
+    else check = !(store.isAuth === false && props.post.id > 1);
 
     function handleClick() {
         history(`lesson${props.post.id}`);
     }
 
-
+    checkComplete = store.user.level >= props.post.id;
     return (
 
         <div onClick={handleClick} style={{cursor: 'pointer',  display: check ? '': 'none'}}>
 
             <div className="post">
-                <div className="post__content">
                     <strong> {props.post.title}: {props.post.body}</strong>
-                    <div>
-                    </div>
-                </div>
+                    <img src={checkmark} style={ { display: checkComplete ?'flex':'none', width: '30px', height: '30px' }} alt="123"/>
             </div>
         </div>
 
     );
 };
 
-export default LessonItem;
+export default observer(LessonItem);
