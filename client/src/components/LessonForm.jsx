@@ -11,9 +11,16 @@ import {store} from "../index";
 const LessonForm = () => {
     const [auth, setAuth] = useState(store.isAuth)
     const [posts, setPosts] = useState([
-        {id: 1, title: 'Урок 1', body: ' Местоимения - часть 1'},
-        {id: 2, title: 'Урок 2', body: ' Местоимения - часть 2'},
-        {id: 3, title: 'Урок 3', body: ' Глагол to be'},
+        {id: 1, title: 'Урок 1', body: ' Основы - часть 1'},
+        {id: 2, title: 'Урок 2', body: ' Основы - часть 2'},
+        {id: 3, title: 'Урок 3', body: ' Множественное число'},
+        {id: 4, title: 'Урок 4', body: ' Существительные'},
+        {id: 5, title: 'Урок 5', body: ' Предлоги'},
+        {id: 6, title: 'Урок 6', body: ' Прилагательные'},
+        {id: 7, title: 'Урок 7', body: ' Вопросительные предл.'},
+        {id: 8, title: 'Урок 8', body: ' Указательные местоимения'},
+        {id: 9, title: 'Урок 9', body: ' Личные местоимения'},
+        {id: 10, title: 'Урок 10', body: ' Глаголы'},
     ])
 
 
@@ -24,17 +31,11 @@ const LessonForm = () => {
             history('/');
 
     }
-    let message;
-
-
-    message = 'Без регистрации вам доступен только первый уровень'
-
 
     return (
         <div>
                 <div className="LoginForm">
                     <form className="form">
-                        <span>{!auth ? message: ''}</span>
                     <LessonList posts={posts}  />
 
                         <Button

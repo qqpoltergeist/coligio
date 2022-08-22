@@ -21,7 +21,6 @@ const LessonPart3 = ({questions, id, length}) => {
 
 
     const handleAnswerButtonClick = (answerOption) => {
-        console.log(answerOption)
         if (answerOption === store.answerExam[currentQuestion]) {
             setRightQuestions(rightQuestions + 1);
         }
@@ -52,7 +51,7 @@ const LessonPart3 = ({questions, id, length}) => {
     if (!result){
     return(
         <div className="LoginForm">
-            <form className="form">
+            <form className="form" noValidate>
                 <h1>Вопрос {currentQuestion+1}/{length}</h1>
                 <h2>{questions[currentQuestion].questionText}</h2>
                 <div className='answer-section'>
@@ -60,6 +59,11 @@ const LessonPart3 = ({questions, id, length}) => {
                         value={answer}
                         handleChange={e => setAnswer(e.target.value)}
                         id="input"
+                        autoComplete="new-password"
+                        inputProps={{
+                            autoComplete:"off"
+                        }}
+
 
                         formControlProps={{
                             fullWidth: true

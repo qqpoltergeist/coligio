@@ -13,6 +13,7 @@ const LessonPart2 = ({questions, id, length}) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [rightQuestions, setRightQuestions] = useState(0)
     const [result, setResult] = useState(false)
+    const [auth, setAuth] = useState(store.isAuth)
     const history = useNavigate();
 
     function handleClickRight() {
@@ -25,7 +26,7 @@ const LessonPart2 = ({questions, id, length}) => {
 
     const handleAnswerButtonClick = (answerOption) => {
         if (answerOption === store.answerTest[currentQuestion]){
-            console.log(answerOption)
+
                 setRightQuestions( rightQuestions+1);
         }
         const nextQuestion = currentQuestion + 1;

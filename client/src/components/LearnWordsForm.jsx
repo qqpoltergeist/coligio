@@ -3,15 +3,18 @@ import {Context, store} from "../index";
 import {observer} from "mobx-react-lite";
 import Button from "../UI/Button";
 import {useNavigate} from "react-router-dom";
+import {useSpeechSynthesis} from "react-speech-kit"
 
 const LearnWordsForm = () => {
     const {store} = useContext(Context)
+    const { speak, speaking, voices } = useSpeechSynthesis();
     const [next, setNext] = useState(false)
     const [access, setAccess] = useState(0)
     const [fail, setFail] = useState(0)
     const [index, setIndex] = useState(0)
     const [empty, setEmpty] = useState(true)
     const history = useNavigate();
+    const voice = voices.find(({ lang }) => lang.startsWith("en-GB"));
 
     function HandleClick() {
         store.getPossibleWords(localStorage.getItem('userId'))
@@ -25,9 +28,14 @@ const LearnWordsForm = () => {
 
 
         function handleShow() {
+
             setNext(true)
             setAccess(store.todayWordss[index].accessDays)
             setFail(store.todayWordss[index].failDays)
+        }
+
+        function handleSpeech() {
+            speak({ voice, text: store.wordssList[similarIndex].englishWord})
         }
 
         function handleDelete() {
@@ -74,6 +82,15 @@ const LearnWordsForm = () => {
                         <form className="form">
                             <h1>{store.wordssList[similarIndex].englishWord}</h1>
                             <h2 style={{display: next ? '' : 'none'}}>{store.wordssList[similarIndex].russianWord}</h2>
+                            <div className="flexSound">
+                            <button
+                                type="button"
+                                color="github"
+                                className="soundButton"
+                                onClick={() => {
+                                    handleSpeech()
+                                }}
+                            >Слушать</button></div>
                             <Button
                                 style={{display: next ? 'none' : ''}}
                                 type="button"

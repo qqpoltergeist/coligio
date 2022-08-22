@@ -51,6 +51,7 @@ const MenuForm = () => {
                     </Link>
                     <Link to="/lessons"  style={{ color: 'inherit', textDecoration: 'inherit'}}>
                     <Button
+                        style={{display: check ? '': 'none'}}
                         type="button"
                         color="primary"
                         className="form__custom-button">

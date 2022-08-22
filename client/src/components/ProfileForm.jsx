@@ -22,6 +22,8 @@ const ProfileForm = () => {
         store.editPass(store.user.id,npassword,opassword)
         document.getElementById('opassword').value = ''
         document.getElementById('npassword').value = ''
+        var popup = document.getElementById("fd");
+        popup.classList.toggle("tn-box-active");
     }
 
 
@@ -33,16 +35,22 @@ const ProfileForm = () => {
         nick = true;
         console.log(nick)
         setNick1(nickname)
+        var popup = document.getElementById("fd");
+        popup.classList.toggle("tn-box-active");
     }
 
 
     return (
         <div>
+            <div className="tn-box tn-box-color-1" id="fd" >
+                <p>Ваши данные были успешно изменены!</p>
+                <div className="tn-progress"></div>
+            </div>
             <div className="LoginForm">
                 <form className="form">
                     <span>Профиль пользователя <h1>{nick ? nickname1 : localStorage.getItem('nickname')}</h1></span>
                     <span style={{marginTop: '20px'}}>Почта:<h1 style={{fontSize: '95%'}}>{localStorage.getItem('email')}</h1></span>
-                    <span style={{marginTop: '20px'}}>Уровень знаний:<h1 style={{fontSize: '95%'}}>{localStorage.getItem('level')}</h1></span>
+                    <span style={{marginTop: '20px'}}>Уровень знаний:<h1 style={{fontSize: '120%'}}>{store.user.level}</h1></span>
                     <div className="editStyle">
                         <span>Изменение данных пользователя</span>
                         <CustomInput
@@ -86,6 +94,7 @@ const ProfileForm = () => {
                     </Button>
                 </form>
             </div>
+
         </div>
     );
 };

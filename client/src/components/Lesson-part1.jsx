@@ -18,21 +18,26 @@ const LessonPart1 = (props) => {
 
     function handleExam() {
         store.getAnswersExam(props.info.id);
-        history('2');
+        store.getAnswersTest(props.info.id);
+        history('1');
     }
     function handleChange() {
         setChange(true)
 
     }
 
+    function handleBack() {
+        history('/lessons');
+    }
+
     if (change){
     return (
         <div className="LoginForm">
-            <form className="form">
+            <form className="form_lesson">
                 <h1 style={{textAlign: "center"}}>
                    {props.info.title}
                 </h1>
-                <div >{props.info.body}</div>
+                <pre className="LoginForm">{props.info.body}</pre>
                 <Button
                     onClick={()=> {
                         handleClick()
@@ -58,7 +63,7 @@ const LessonPart1 = (props) => {
                                 type="button"
                                 color="primary"
                                 className="form__custom-button">
-                                Далее
+                                Теория
                             </Button>
                             <Button
                                 onClick={()=> {
@@ -67,7 +72,16 @@ const LessonPart1 = (props) => {
                                 type="button"
                                 color="primary"
                                 className="form__custom-button">
-                                Перейти к экзамену
+                                Перейти к занятию
+                            </Button>
+                            <Button
+                                onClick={()=> {
+                                    handleBack()
+                                }}
+                                type="button"
+                                color="primary"
+                                className="form__custom-button">
+                                Назад
                             </Button>
                         </form>
                     </div>

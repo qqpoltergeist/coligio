@@ -1,4 +1,4 @@
-import checkmark from '../images/checkmark.png'
+import checkmark from '../images/crown.svg'
 import React, {useContext} from 'react';
 import { useNavigate} from "react-router-dom";
 import {Context, store} from "../index";
@@ -28,7 +28,7 @@ const LessonItem = (props) => {
 
             <div className="post">
                     <strong> {props.post.title}: {props.post.body}</strong>
-                    <img src={checkmark} style={ { display: checkComplete ?'flex':'none', width: '30px', height: '30px' }} alt="123"/>
+                    <img src={checkmark} style={ { display: checkComplete ?'flex':'none', width: '20px', height: '20px' }} alt="123"/>
             </div>
         </div>
 

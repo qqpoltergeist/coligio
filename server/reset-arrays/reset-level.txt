@@ -1,0 +1,22 @@
+[
+	{
+		"num": 1,
+		"correctExercisesWords": ["i", "she", "he", "you", "we", "they", "am", "are", "is", "are"],
+		"correctTestsWords": ["am", "are", "is", "have", "is", "has"]
+	},
+	{
+		"num" : 2,
+		"correctExercisesWords": ["you", "we", "they"],
+		"correctTestsWords": ["you", "we", "they"]
+	},
+	{
+		"num": 3,
+		"correctExercisesWords": ["am", "is", "are"],
+		"correctTestsWords": ["am", "is", "are"]
+	},
+	{
+		"num": 4,
+		"correctExercisesWords": ["ex-4-1", "ex-4-2", "ex-4-3"],
+		"correctTestsWords": ["test-4-1", "test-4-2", "test-4-3"]
+	}
+]

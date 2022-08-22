@@ -16,6 +16,7 @@ export const Context =createContext({store})
 ReactDOM.render(
     <BrowserRouter>
     <Context.Provider value={{store}}>
+
             <App/>
     </Context.Provider>
         </BrowserRouter>,

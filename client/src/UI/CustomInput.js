@@ -26,7 +26,7 @@ export default function CustomInput(props) {
         inputRootCustomClasses,
         success,
         handleChange,
-        type
+        type,
     } = props;
 
     const labelClasses = classNames({
@@ -56,9 +56,10 @@ export default function CustomInput(props) {
         formControlClasses = classes.formControl;
     }
     return (
-        <FormControl {...formControlProps} className={formControlClasses}>
+        <FormControl {...formControlProps} className={formControlClasses} noValidate>
             {labelText !== undefined ? (
                 <InputLabel
+                    autocomplete="off"
                     className={classes.labelRoot + " " + labelClasses}
                     htmlFor={id}
                     {...labelProps}
@@ -66,16 +67,18 @@ export default function CustomInput(props) {
                     {labelText}
                 </InputLabel>
             ) : null}
-            <Input
+            <Input noValidate
                 classes={{
                     input: inputClasses,
                     root: marginTop,
                     disabled: classes.disabled,
                     underline: underlineClasses
+
                 }}
                 id={id}
                 onChange={handleChange}
                 {...inputProps}
+
                 type={type}
             />
         </FormControl>

@@ -30,13 +30,13 @@ const LoginForm = () => {
                     <CustomInput
                         value={email}
                         handleChange={e => setEmail(e.target.value)}
-                        labelText="Email"
+                        labelText="Почта"
                         type="email"
                     />
                     <CustomInput
                         value={password}
                         handleChange={e => setPass(e.target.value)}
-                        labelText="Password"
+                        labelText="Пароль"
                         id="password"
                         formControlProps={{
                             fullWidth: true
@@ -55,7 +55,7 @@ const LoginForm = () => {
                         type="button"
                         color="primary"
                         className="form__custom-button">
-                        Log in
+                        Войти
                     </Button>
 
                 </form>

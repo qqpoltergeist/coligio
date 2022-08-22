@@ -24,13 +24,13 @@ const RegisterForm = () => {
                             fullWidth: true
                         }}
                         id="email"
-                        labelText="Email"
+                        labelText="Почта"
                         type="email"
                     />
                     <CustomInput
                         value={nickname}
                         handleChange={e => setUser(e.target.value)}
-                        labelText="Username"
+                        labelText="Никнейм"
                         id="username"
                         formControlProps={{
                             fullWidth: true
@@ -40,7 +40,7 @@ const RegisterForm = () => {
                     <CustomInput
                         value={password}
                         handleChange={e => setPass(e.target.value)}
-                        labelText="Password"
+                        labelText="Пароль"
                         id="password"
                         formControlProps={{
                             fullWidth: true
@@ -58,7 +58,7 @@ const RegisterForm = () => {
                         type="button"
                         color="primary"
                         className="form__custom-button">
-                        Register
+                        Зарегистрироваться
                     </Button>
                     </Link>
                 </form>
